@@ -78,6 +78,10 @@ def combine_game_logs():
     df_list = [pd.read_csv(file) for file in csv_files]
     combined_df = pd.concat(df_list, ignore_index=True)
     
+    # Exclude rows containing 'opponent'
+    combined_df = combined_df[~combined_df['winner'].str.contains('opponent', case=False, na=False)]
+    combined_df = combined_df[~combined_df['loser'].str.contains('opponent', case=False, na=False)]
+    
     combined_df.to_csv("all_games.csv", index=False)
     print(f"Combined {len(csv_files)} CSV files into 'all_games.csv'.")
 

@@ -1,5 +1,6 @@
 import pandas as pd
 import networkx as nx
+import scipy as sp
 
 class TeamRanker:
     def __init__(self, games_file="all_games.csv"):
@@ -20,9 +21,19 @@ class TeamRanker:
         # Compute PageRank
         self.ranks = nx.pagerank(self.G)
     
-    def get_ranks(self):
-        """Get sorted list of teams by PageRank value."""
-        return sorted(self.ranks.items(), key=lambda x: x[1], reverse=True)
+    def get_ranks(self, normalize=False):
+        """Get sorted list of teams by PageRank value.
+        
+        Args:
+            normalize (bool): If True, scales scores so highest is 1 and lowest is 0
+        """
+        ranks = sorted(self.ranks.items(), key=lambda x: x[1], reverse=True)
+        if normalize:
+            min_rank = ranks[-1][1]
+            max_rank = ranks[0][1]
+            range_rank = max_rank - min_rank
+            ranks = [(team, (score - min_rank) / range_rank) for team, score in ranks]
+        return ranks
     
     def versus(self, team1, team2):
         """Compare two teams based on their PageRank values."""
