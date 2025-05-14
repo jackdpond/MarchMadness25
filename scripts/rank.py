@@ -1,6 +1,7 @@
 import pandas as pd
 import networkx as nx
 import scipy as sp
+import matplotlib.pyplot as plt
 
 class TeamRanker:
     def __init__(self, games_file="results/all_games.csv"):
@@ -47,4 +48,20 @@ class TeamRanker:
     
     def get_rank(self, team):
         """Get the PageRank value for a specific team."""
-        return self.ranks.get(team, 0) 
+        return self.ranks.get(team, 0)
+        
+    def save_graph(self, output_file="graph.png"):
+        """Save a visualization of the game graph.
+        
+        Args:
+            output_file (str): Path to save the graph image
+        """
+        plt.figure(figsize=(8, 8))
+        nx.draw(self.G, node_color='green', 
+                edge_color='black', node_size=1, width=0.5)
+        plt.title("Regular Season 2025 Results", fontsize=20)          # Title (larger font)
+        plt.suptitle("An edge represents a game, and points to the winner", fontsize=12)   # Subheading above the title
+        
+        # Save the image
+        plt.savefig(output_file, dpi=300, bbox_inches='tight')
+        plt.close()  # Close the figure to free memory 
