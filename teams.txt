@@ -8,7 +8,7 @@ Marquette
 Louisville  
 Creighton  
 New Mexico  
-VCU  
+virginia-commonwealth
 California San Diego  
 Yale  
 Bryant  
@@ -20,7 +20,7 @@ Wisconsin
 Arizona  
 Oregon  
 Brigham Young
-Saint Marys  
+saint-marys-ca
 Mississippi State  
 Baylor  
 Vanderbilt  
@@ -56,10 +56,10 @@ Arkansas
 Drake  
 Colorado State  
 Grand Canyon  
-UNC Wilmington  
+north-carolina-wilmington  
 Nebraska-Omaha  
-Mount Saint Mary's  
-Saint Francis (PA)  
+mount-st-marys
+saint-francis-pa 
 American  
 Alabama State  
 North Carolina  
