@@ -3,7 +3,7 @@
 
 This repository contains code to scrape (according to usage rules) sports-reference.com to retrieve the results of a given season, create a directed graph representing those results, then performing the pagerank algorithm to rank the teams.
 
-The results, stored by team in scripts/results and in total in scripts/results/all_games.csv, are represented by the following graph.
+The results, stored by team in scripts/results and in total in scripts/results/all_games.csv, are represented by the following graph. The only games in the network, and therefore the only games that factor towards the rankings, are games played by tournament teams during the regular season.
 
 ![Network of the 2025 season](images/game_graph.png)
 
@@ -79,6 +79,8 @@ python3 main.py --teams-file other_teams.txt --year 2024
 
 ## Next Steps
 I am already brainstorming for new, more sophisticated models for next year. I am thinking of tweaking [this method](https://www.researchgate.net/publication/276069262_Ranking_NCAA_Basketball_Teams_Using_the_Google_PageRank_Algorithm) from Joe Stanek, or abandoning a network-based approach in favor of a different model. I think that a weakness of the naive pagerank implementation is that it gives a static ranked list of teams, when in reality a team's strengths and weaknesses may cause them them to beat one team while losing to a second team that the first team beat. A better match-up model is required.
+
+Also, as previously mentioned, I only include games played by tournament teams during the regular season. This leaves out valuable information that would contribute to better rankings. For 2026, I plan to include every regular season game in the training data.
 
 Until then, I will be adding methods to Teamranker that take in the rankings, the match-ups of the initial round, and the true results of the tournament in order to evaluate rankings. The first question I have is how well my now-fixed ranking method would have performed. Beyond that, I'd like to evaluate my rankings on previous years and learn the ideal epsilon value for the PageRank model. I would also use this method to evaulate future models.
 
